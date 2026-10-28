@@ -83,3 +83,8 @@ android/gradle.properties
 .vscode/
 *.log
 dist/
+# Expo
+.expo/
+android/
+ios/
+credentials.json

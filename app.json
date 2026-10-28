@@ -1,8 +1,56 @@
 {
-  "name": "ExamePsicotecnico",
-  "displayName": "ExamePsicotecnico",
-  "react-native-google-mobile-ads": {
-    "android_app_id": "ca-app-pub-9218769381944425~7120876774",
-    "ios_app_id": "ca-app-pub-xxxxxxxx~xxxxxxxx"
+  "expo": {
+    "name": "Exame Psicotecnico",
+    "slug": "exame-psicotecnico",
+    "owner": "rotec",
+    "version": "2.1.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon-1024.png",
+    "userInterfaceStyle": "light",
+    "android": {
+      "package": "com.rotech.examepsicotecnico",
+      "versionCode": 19,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon-1024.png",
+        "backgroundColor": "#ffffff"
+      },
+      "blockedPermissions": [
+        "android.permission.SYSTEM_ALERT_WINDOW",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE"
+      ],
+      "permissions": [
+        "android.permission.RECORD_AUDIO",
+        "android.permission.MODIFY_AUDIO_SETTINGS",
+        "android.permission.FOREGROUND_SERVICE",
+        "android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK"
+      ]
+    },
+    "plugins": [
+      [
+        "react-native-google-mobile-ads",
+        {
+          "androidAppId": "ca-app-pub-9218769381944425~7120876774",
+          "iosAppId": "ca-app-pub-9218769381944425~7120876774"
+        }
+      ],
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/icon.png",
+          "imageWidth": 150,
+          "resizeMode": "contain",
+          "backgroundColor": "#ffffff"
+        }
+      ],
+      "expo-audio",
+      "expo-font"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "52ab2469-1ce8-4cd9-ac11-8fb8e14c9c35"
+      }
+    }
   }
 }
