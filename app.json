@@ -45,7 +45,15 @@
         }
       ],
       "expo-audio",
-      "expo-font"
+      "expo-font",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "extraProguardRules": "-keep class * extends androidx.room.RoomDatabase { <init>(); }"
+          }
+        }
+      ]
     ],
     "extra": {
       "eas": {
