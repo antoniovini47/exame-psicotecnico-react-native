@@ -10,6 +10,7 @@ import {
   Modal,
 } from 'react-native';
 import {RadioButton} from 'react-native-paper';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import Slider from '@react-native-community/slider';
 import {AudioPlayer, createAudioPlayer} from 'expo-audio';
 import mobileAds, {
@@ -273,7 +274,7 @@ export function Home() {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View>
         <Text style={styles.textTitle}>{textTitle}</Text>
       </View>
@@ -504,6 +505,6 @@ export function Home() {
           </View>
         </View>
       </Modal>
-    </View>
+    </SafeAreaView>
   );
 }
