@@ -127,7 +127,7 @@ export default function VisualMemory() {
           {phase === 'recall' && `Marque as ${level.shown.length} figuras que você viu`}
           {phase === 'checked' &&
             levelScore &&
-            `${levelScore.hits} de ${levelScore.targets} certas${levelScore.falseAlarms ? ` · ${levelScore.falseAlarms} erradas` : ''}`}
+            `${levelScore.hits} de ${levelScore.targets} certas${levelScore.falseAlarms ? ` · ${levelScore.falseAlarms} ${levelScore.falseAlarms === 1 ? 'errada' : 'erradas'}` : ''}`}
         </Text>
         {phase === 'study' && (
           <Text variant="heading" color={palette.primary}>
