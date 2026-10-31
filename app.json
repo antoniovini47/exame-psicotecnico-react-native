@@ -9,7 +9,7 @@
     "userInterfaceStyle": "automatic",
     "android": {
       "package": "com.rotech.examepsicotecnico",
-      "versionCode": 23,
+      "versionCode": 24,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-foreground.png",
         "monochromeImage": "./assets/adaptive-monochrome.png",
