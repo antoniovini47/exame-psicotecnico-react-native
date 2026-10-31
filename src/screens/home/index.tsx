@@ -10,7 +10,9 @@ import {
   Modal,
 } from 'react-native';
 import {RadioButton} from 'react-native-paper';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import Slider from '@react-native-community/slider';
+import {AudioPlayer, createAudioPlayer} from 'expo-audio';
 import mobileAds, {
   BannerAd,
   BannerAdSize,
@@ -65,24 +67,15 @@ const interstitialAd = InterstitialAd.createForAdRequest(
 
 const rewardedAd = RewardedAd.createForAdRequest(rewardedAdId, keywordsAds);
 
-var Sound = require('react-native-sound');
-Sound.setCategory('Playback');
-var correctSound = new Sound('correct.mp3', Sound.MAIN_BUNDLE, error => {
-  if (error) {
-    console.log('failed to load the sound', error);
-    return;
-  }
-});
+const correctSound = createAudioPlayer(require('../../../assets/sounds/correct.mp3'));
+const incorrectSound = createAudioPlayer(require('../../../assets/sounds/incorrect.mp3'));
 
-var incorrectSound = new Sound('incorrect.mp3', Sound.MAIN_BUNDLE, error => {
-  if (error) {
-    console.log('failed to load the sound', error);
-    return;
-  }
-});
+function playSound(player: AudioPlayer) {
+  player.seekTo(0);
+  player.play();
+}
 
-const imageDefaultPath: string =
-  '../../../android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png';
+const imageDefault = require('../../../assets/icon.png');
 
 const minimunQuantityQuestions = __DEV__ ? 3 : questionsDB.length / 2;
 
@@ -99,7 +92,7 @@ let emptyQuestion: Question = {
   textOptionD: 'Alt D',
   textOptionE: 'Alt E',
   correctOption: 'a',
-  image: require(imageDefaultPath),
+  image: imageDefault,
 };
 let currentQuestion = 0,
   sortedQuestions: Question[] = [emptyQuestion],
@@ -171,7 +164,7 @@ export function Home() {
   const [textButton, setTextButton] = React.useState('Iniciar');
   const [textTitle, setTextTitle] = React.useState('Exame Psicotécnico');
   const [image, setImagePath] = React.useState(
-    require('../../../android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png'),
+    imageDefault,
   );
   const [textQuestion, setTextQuestion] = React.useState(
     'Selecione a quantidade de questões e clique em iniciar para começar o exame.',
@@ -233,7 +226,7 @@ export function Home() {
       setTextButton('Responder');
 
       if (currentQuestion == quantityQuestionsSelected) {
-        setImagePath(require(imageDefaultPath));
+        setImagePath(imageDefault);
         setAppState('result');
         setTextButton('Repetir');
         setTextTitle('Resultado');
@@ -254,10 +247,10 @@ export function Home() {
       }
 
       if (optionSelected == sortedQuestions[currentQuestion].correctOption) {
-        correctSound.play();
+        playSound(correctSound);
         scoreCount++;
       } else {
-        incorrectSound.play();
+        playSound(incorrectSound);
       }
 
       setTextButton('Continuar');
@@ -281,7 +274,7 @@ export function Home() {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View>
         <Text style={styles.textTitle}>{textTitle}</Text>
       </View>
@@ -512,6 +505,6 @@ export function Home() {
           </View>
         </View>
       </Modal>
-    </View>
+    </SafeAreaView>
   );
 }

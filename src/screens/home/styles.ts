@@ -44,7 +44,7 @@ export const styles = StyleSheet.create({
     flexWrap: 'nowrap',
   },
   adBanner: {
-    height: adHeight,
+    minHeight: adHeight,
     justifyContent: 'center',
   },
   footer: {

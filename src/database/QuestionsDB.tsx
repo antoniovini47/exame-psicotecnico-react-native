@@ -1,7 +1,6 @@
 import {Question} from '../class/Question';
 
-const imageDefaultPath: string =
-  '../../android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png';
+const imageDefault = require('../../assets/icon.png');
 
 const questionsDB: Question[] = [
   {
@@ -17,7 +16,7 @@ const questionsDB: Question[] = [
   },
   {
     id: 2,
-    image: require(imageDefaultPath),
+    image: imageDefault,
     textQuestion: 'Complete a sequência: 21 35 20 34 19 33 18 ??',
     textOptionA: '32',
     textOptionB: '18',
@@ -39,7 +38,7 @@ const questionsDB: Question[] = [
   },
   {
     id: 4,
-    image: require(imageDefaultPath),
+    image: imageDefault,
     textQuestion: 'Tem-se nove velas acesas, e se apagam 3. Quantas ficam?',
     textOptionA: '48 / 4',
     textOptionB: '8 + 1',
@@ -50,7 +49,7 @@ const questionsDB: Question[] = [
   },
   {
     id: 5,
-    image: require(imageDefaultPath),
+    image: imageDefault,
     textQuestion:
       'RELACIONE\n1) acender      ( ? ) riso\n2) pranto     ( ? ) apagar\n3) modéstia     ( ? ) orgulho',
     textOptionA: '213',
@@ -62,7 +61,7 @@ const questionsDB: Question[] = [
   },
   {
     id: 6,
-    image: require(imageDefaultPath),
+    image: imageDefault,
     textQuestion:
       'Numa sala, de nove cantos, há uma pessoa em cada canto. Quantas pessoas cada uma vê?',
     textOptionA: '10',
@@ -85,7 +84,7 @@ const questionsDB: Question[] = [
   },
   {
     id: 8,
-    image: require(imageDefaultPath),
+    image: imageDefault,
     textQuestion:
       'O rato roeu a roupa da rainha. O rei, revoltado, matou o rato. Quantos erres tem "isso"?',
     textOptionA: 'Um número negativo',
@@ -97,7 +96,7 @@ const questionsDB: Question[] = [
   },
   {
     id: 9,
-    image: require(imageDefaultPath),
+    image: imageDefault,
     textQuestion: 'DRAMA',
     textOptionA: 'dente, rouca, além, algo, diabo',
     textOptionB: 'droga, rapaz, aranha, manga, abacate',
@@ -108,7 +107,7 @@ const questionsDB: Question[] = [
   },
   {
     id: 10,
-    image: require(imageDefaultPath),
+    image: imageDefault,
     textQuestion: 'Que se passa aqui?',
     textOptionA: 'mecamitomecamitomecamito',
     textOptionB: 'fitatifofitatifofitatifo',
@@ -130,7 +129,7 @@ const questionsDB: Question[] = [
   },
   {
     id: 12,
-    image: require(imageDefaultPath),
+    image: imageDefault,
     textQuestion: 'Qual destas perguntas é impossível responder "sim"?',
     textOptionA: 'está dormindo?',
     textOptionB: 'sonhou?',
@@ -141,7 +140,7 @@ const questionsDB: Question[] = [
   },
   {
     id: 13,
-    image: require(imageDefaultPath),
+    image: imageDefault,
     textQuestion: 'TEMP -- TEMPES -- TEMPESTA -- ?',
     textOptionA: 'tempestades',
     textOptionB: 'temporal',
@@ -152,7 +151,7 @@ const questionsDB: Question[] = [
   },
   {
     id: 14,
-    image: require(imageDefaultPath),
+    image: imageDefault,
     textQuestion:
       'O professor transmitiu saber riquíssimo a várias gerações, realizando trabalho de grandes extensão: ',
     textOptionA: 'cultural',
@@ -164,7 +163,7 @@ const questionsDB: Question[] = [
   },
   {
     id: 15,
-    image: require(imageDefaultPath),
+    image: imageDefault,
     textQuestion: 'Se João fosse Maria, lago seria...',
     textOptionA: 'córrego',
     textOptionB: 'rio',
@@ -175,7 +174,7 @@ const questionsDB: Question[] = [
   },
   {
     id: 16,
-    image: require(imageDefaultPath),
+    image: imageDefault,
     textQuestion: 'ATA -- GRAVATA -- AR\nEGO -- PREGO -- ?',
     textOptionA: 'AV',
     textOptionB: 'GO',
@@ -186,7 +185,7 @@ const questionsDB: Question[] = [
   },
   {
     id: 17,
-    image: require(imageDefaultPath),
+    image: imageDefault,
     textQuestion: '5  2  9  3  7  --  9\n0  4  1  6  8  --  ?',
     textOptionA: '3',
     textOptionB: '1',
@@ -208,7 +207,7 @@ const questionsDB: Question[] = [
   },
   {
     id: 19,
-    image: require(imageDefaultPath),
+    image: imageDefault,
     textQuestion: 'Que se passa aqui?',
     textOptionA: 'Rua estreita e curta (malar); pssp da face (beco);',
     textOptionB: 'Maior deserto (saara); mamífero desdentado (tatu);',
@@ -220,7 +219,7 @@ const questionsDB: Question[] = [
   },
   {
     id: 20,
-    image: require(imageDefaultPath),
+    image: imageDefault,
     textQuestion: 'ETNIV SONEM OCNIC',
     textOptionA: 'EZNO',
     textOptionB: 'EZNIUQ',
@@ -231,7 +230,7 @@ const questionsDB: Question[] = [
   },
   {
     id: 21,
-    image: require(imageDefaultPath),
+    image: imageDefault,
     textQuestion:
       'Um passageiro sai, de avião, às 15 horas, do Rio com destino a Manaus, cuja viagem dura 3 horas. Por que, então, ele chegou lá às 17 horas e não às 18 horas?',
     textOptionA: 'Tempo chuvoso',
@@ -243,7 +242,7 @@ const questionsDB: Question[] = [
   },
   {
     id: 22,
-    image: require(imageDefaultPath),
+    image: imageDefault,
     textQuestion: 'DE CANA\nFRIO\nCHATO\nQUENTE',
     textOptionA: 'gomo',
     textOptionB: 'talo',
@@ -254,7 +253,7 @@ const questionsDB: Question[] = [
   },
   {
     id: 23,
-    image: require(imageDefaultPath),
+    image: imageDefault,
     textQuestion: 'Quinhentos, igual a:',
     textOptionA: '2 x 5 ao quadrado + 15 x 40',
     textOptionB: '2 ao quadrado x 5 ao quadrado + 50 x 4',
@@ -287,7 +286,7 @@ const questionsDB: Question[] = [
   },
   {
     id: 26,
-    image: require(imageDefaultPath),
+    image: imageDefault,
     textQuestion:
       'Quando se está num quarto escuro e se tem um fósforo, um fogareiro, um lampião, uma vela e um cigarro, o que se acende primeiro?',
     textOptionA: 'Fósforo',

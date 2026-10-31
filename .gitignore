@@ -77,9 +77,13 @@ android/app/keyStoreVigente.jks
 android/gradle.properties
 
 # Database
-/src/database/images
 /examples
 /.expo
 .vscode/
 *.log
 dist/
+# Expo
+.expo/
+android/
+ios/
+credentials.json
