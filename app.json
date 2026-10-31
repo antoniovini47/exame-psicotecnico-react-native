@@ -6,13 +6,14 @@
     "version": "2.1.0",
     "orientation": "portrait",
     "icon": "./assets/icon-1024.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "automatic",
     "android": {
       "package": "com.rotech.examepsicotecnico",
       "versionCode": 22,
       "adaptiveIcon": {
-        "foregroundImage": "./assets/icon-1024.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/adaptive-foreground.png",
+        "monochromeImage": "./assets/adaptive-monochrome.png",
+        "backgroundColor": "#0E3B43"
       },
       "blockedPermissions": [
         "android.permission.SYSTEM_ALERT_WINDOW",
@@ -38,14 +39,17 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/icon.png",
+          "image": "./assets/splash-icon.png",
           "imageWidth": 150,
           "resizeMode": "contain",
-          "backgroundColor": "#ffffff"
+          "backgroundColor": "#FFFBEF",
+          "dark": {
+            "image": "./assets/splash-icon.png",
+            "backgroundColor": "#0B1F23"
+          }
         }
       ],
       "expo-audio",
-      "expo-font",
       [
         "expo-build-properties",
         {
@@ -53,12 +57,15 @@
             "extraProguardRules": "-keep class * extends androidx.room.RoomDatabase { <init>(); }"
           }
         }
-      ]
+      ],
+      "expo-router",
+      "expo-sqlite"
     ],
     "extra": {
       "eas": {
         "projectId": "52ab2469-1ce8-4cd9-ac11-8fb8e14c9c35"
       }
-    }
+    },
+    "scheme": "examepsicotecnico"
   }
 }
