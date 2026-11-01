@@ -5,7 +5,7 @@ import { QUICK_ROUND_SIZE } from '../../src/session';
 import { PAGE_SECONDS, PAGES_PER_SESSION } from '../../src/domain/focusedAttention';
 import { TRIAL_MS, TRIALS_PER_SESSION } from '../../src/domain/dividedAttention';
 import { LEVEL_SIZES } from '../../src/domain/visualMemory';
-import { startFlow } from '../../src/flow';
+import { startFlow, startQuickRound } from '../../src/flow';
 import { usePalette } from '../../src/theme';
 import { SkillTile } from '../../src/ui/SkillTile';
 import { Text } from '../../src/ui/Text';
@@ -23,7 +23,7 @@ export default function Train() {
             title="Raciocínio lógico"
             icon="trend"
             detail={`${QUICK_ROUND_SIZE} questões`}
-            onPress={() => router.push({ pathname: '/rodada', params: { size: String(QUICK_ROUND_SIZE) } })}
+            onPress={() => startQuickRound(router)}
           />
           <SkillTile
             title="Atenção concentrada"

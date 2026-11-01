@@ -87,3 +87,6 @@ dist/
 android/
 ios/
 credentials.json
+
+# Firebase (fora do git; no EAS vem da variável de arquivo GOOGLE_SERVICES_JSON)
+google-services.json
