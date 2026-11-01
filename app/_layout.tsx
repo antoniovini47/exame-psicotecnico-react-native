@@ -1,21 +1,28 @@
 import { Nunito_400Regular, Nunito_700Bold, Nunito_800ExtraBold, Nunito_900Black, useFonts } from '@expo-google-fonts/nunito';
-import { Stack } from 'expo-router';
+import { Stack, usePathname } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import { initAds } from '../src/ads/ads';
+import { initAnalytics, trackScreen } from '../src/analytics';
 import { usePalette } from '../src/theme';
 
 SplashScreen.preventAutoHideAsync();
+initAnalytics();
 initAds();
 
 export default function RootLayout() {
   const palette = usePalette();
+  const pathname = usePathname();
   const [loaded, error] = useFonts({ Nunito_400Regular, Nunito_700Bold, Nunito_800ExtraBold, Nunito_900Black });
 
   useEffect(() => {
     if (loaded || error) SplashScreen.hideAsync();
   }, [loaded, error]);
+
+  useEffect(() => {
+    trackScreen(pathname);
+  }, [pathname]);
 
   if (!loaded && !error) return null;
 

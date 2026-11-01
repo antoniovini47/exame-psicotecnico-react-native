@@ -4,6 +4,7 @@ import Animated, { ZoomIn } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { AdBanner } from '../src/ads/AdBanner';
 import { maybeShowInterstitial } from '../src/ads/ads';
+import { track } from '../src/analytics';
 import { overallShare, parseSteps } from '../src/domain/exam';
 import { SKILL_LABELS } from '../src/domain/progress';
 import { usePalette } from '../src/theme';
@@ -67,7 +68,10 @@ export default function Result() {
           <Button
             label={wrong.length === 1 ? 'Revisar o erro' : `Revisar os ${wrong.length} erros`}
             kind="outline"
-            onPress={() => router.push({ pathname: '/revisao', params: { ids: wrong.join(',') } })}
+            onPress={() => {
+              track('review_open', { wrong: wrong.length });
+              router.push({ pathname: '/revisao', params: { ids: wrong.join(',') } });
+            }}
           />
         )}
         <Button

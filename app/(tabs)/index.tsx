@@ -7,7 +7,7 @@ import { currentStreak, dayKey } from '../../src/domain/progress';
 import { PAGE_SECONDS, PAGES_PER_SESSION } from '../../src/domain/focusedAttention';
 import { TRIAL_MS, TRIALS_PER_SESSION } from '../../src/domain/dividedAttention';
 import { LEVEL_SIZES } from '../../src/domain/visualMemory';
-import { startFlow } from '../../src/flow';
+import { startFlow, startQuickRound } from '../../src/flow';
 import { currentIndex, type Round } from '../../src/domain/reasoning';
 import { loadProgress, loadRound, QUICK_ROUND_SIZE } from '../../src/session';
 import { radius, usePalette } from '../../src/theme';
@@ -66,7 +66,7 @@ export default function Home() {
           )}
           <Button
             label={round ? 'Continuar' : 'Começar'}
-            onPress={() => router.push({ pathname: '/rodada', params: { size: String(QUICK_ROUND_SIZE) } })}
+            onPress={() => startQuickRound(router)}
           />
         </View>
 
@@ -89,7 +89,7 @@ export default function Home() {
             title="Raciocínio lógico"
             icon="trend"
             detail={`${QUICK_ROUND_SIZE} questões`}
-            onPress={() => router.push({ pathname: '/rodada', params: { size: String(QUICK_ROUND_SIZE) } })}
+            onPress={() => startQuickRound(router)}
           />
         </View>
       </ScrollView>
