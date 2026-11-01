@@ -3,7 +3,7 @@
     "name": "Exame Psicotecnico",
     "slug": "exame-psicotecnico",
     "owner": "rotec",
-    "version": "3.0.0",
+    "version": "3.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon-1024.png",
     "userInterfaceStyle": "automatic",
