@@ -5,6 +5,7 @@ export const keys = {
   progress: 'progress',
   lastInterstitialAt: 'ads.lastInterstitialAt',
   adFreeUntil: 'ads.adFreeUntil',
+  reviewAskedAt: 'review.askedAt',
 } as const;
 
 type Key = (typeof keys)[keyof typeof keys];
