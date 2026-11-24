@@ -1,5 +1,6 @@
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { useEffect, useRef } from 'react';
+import { Linking, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import Animated, { ZoomIn } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { AdBanner } from '../src/ads/AdBanner';
@@ -10,9 +11,14 @@ import { SKILL_LABELS } from '../src/domain/progress';
 import { usePalette } from '../src/theme';
 import { Button } from '../src/ui/Button';
 import { Card } from '../src/ui/Card';
+import { Icon } from '../src/ui/Icon';
 import { Mascot } from '../src/ui/Mascot';
 import { ProgressBar } from '../src/ui/ProgressBar';
 import { Text } from '../src/ui/Text';
+import { maybeAskReview } from '../src/review';
+
+const RACIOCINIO_URL = 'https://play.google.com/store/apps/details?id=com.rotech.testederaciociniolgico';
+const REVIEW_DELAY_MS = 1200;
 
 function headline(share: number): string {
   if (share >= 0.8) return 'Mandou bem!';
@@ -27,6 +33,16 @@ export default function Result() {
   const steps = parseSteps(params.steps);
   const share = overallShare(steps);
   const wrong = steps.flatMap((step) => step.wrongIds ?? []);
+  const reviewAsked = useRef(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      maybeAskReview(share).then((asked) => {
+        reviewAsked.current = asked;
+      });
+    }, REVIEW_DELAY_MS);
+    return () => clearTimeout(timer);
+  }, [share]);
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: palette.background }}>
@@ -61,6 +77,27 @@ export default function Result() {
             </Card>
           );
         })}
+
+        <Pressable
+          accessibilityRole="link"
+          accessibilityLabel="Abrir o app Teste de Raciocínio Lógico na Play Store"
+          onPress={() => {
+            track('cross_promo', { target: 'testederaciociniolgico' });
+            Linking.openURL(RACIOCINIO_URL);
+          }}>
+          <Card style={styles.promo}>
+            <View style={{ flex: 1, gap: 2 }}>
+              <Text variant="label" muted>
+                Do mesmo desenvolvedor
+              </Text>
+              <Text variant="bodyStrong">Teste de Raciocínio Lógico</Text>
+              <Text variant="caption" muted>
+                Mais questões de raciocínio e simulado com tempo
+              </Text>
+            </View>
+            <Icon name="chevron" color={palette.ink} />
+          </Card>
+        </Pressable>
       </ScrollView>
 
       <View style={styles.footer}>
@@ -77,7 +114,7 @@ export default function Result() {
         <Button
           label="Continuar"
           onPress={() => {
-            maybeShowInterstitial();
+            if (!reviewAsked.current) maybeShowInterstitial();
             router.replace('/');
           }}
         />
@@ -90,5 +127,6 @@ const styles = StyleSheet.create({
   content: { padding: 20, gap: 16 },
   hero: { alignItems: 'center', gap: 8, paddingTop: 8 },
   row: { flexDirection: 'row', justifyContent: 'space-between' },
+  promo: { flexDirection: 'row', alignItems: 'center', gap: 12 },
   footer: { paddingHorizontal: 20, paddingBottom: 16, gap: 10 },
 });
