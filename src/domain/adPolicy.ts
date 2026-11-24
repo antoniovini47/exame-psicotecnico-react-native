@@ -1,4 +1,4 @@
-export const INTERSTITIAL_MIN_GAP_MS = 3 * 60 * 1000;
+export const INTERSTITIAL_MIN_GAP_MS = 2 * 60 * 1000;
 export const AD_FREE_REWARD_MS = 24 * 60 * 60 * 1000;
 
 export function canShowInterstitial(lastShownAt: number | null, adFreeUntil: number | null, now: number): boolean {
