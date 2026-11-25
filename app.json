@@ -28,6 +28,7 @@
       ]
     },
     "plugins": [
+      "./plugins/withAppLovinAdapter",
       [
         "react-native-google-mobile-ads",
         {
