@@ -21,6 +21,12 @@ describe('parseSteps', () => {
     ]);
     expect(parseSteps(raw)).toEqual([{ skill: 'focused', correct: 1, total: 2, detail: 'ok' }]);
   });
+
+  it('given question ids, when parsing, then keeps valid lists and drops invalid ones', () => {
+    const valid = { skill: 'reasoning', correct: 1, total: 2, detail: '', wrongIds: [4], questionIds: [3, 4] };
+    const raw = JSON.stringify([valid, { ...valid, questionIds: ['x'] }]);
+    expect(parseSteps(raw)).toEqual([valid]);
+  });
 });
 
 describe('parseChain', () => {

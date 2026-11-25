@@ -20,6 +20,7 @@ export interface RoundSummary {
   total: number;
   correct: number;
   wrongIds: number[];
+  questionIds: number[];
   durationMs: number;
 }
 
@@ -57,6 +58,7 @@ export function summarize(round: Round, bank: readonly Question[], now: number):
     total: round.questionIds.length,
     correct: round.questionIds.length - wrongIds.length,
     wrongIds,
+    questionIds: round.questionIds,
     durationMs: now - round.startedAt,
   };
 }

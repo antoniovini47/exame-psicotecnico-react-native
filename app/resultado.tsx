@@ -4,7 +4,7 @@ import { Linking, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import Animated, { ZoomIn } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { AdBanner } from '../src/ads/AdBanner';
-import { maybeShowInterstitial } from '../src/ads/ads';
+import { isRewardedReady, maybeShowInterstitial, showRewarded } from '../src/ads/ads';
 import { track } from '../src/analytics';
 import { overallShare, parseSteps } from '../src/domain/exam';
 import { SKILL_LABELS } from '../src/domain/progress';
@@ -33,6 +33,8 @@ export default function Result() {
   const steps = parseSteps(params.steps);
   const share = overallShare(steps);
   const wrong = steps.flatMap((step) => step.wrongIds ?? []);
+  const all = steps.flatMap((step) => step.questionIds ?? []);
+  const canUnlockFullReview = all.length > wrong.length && isRewardedReady();
   const reviewAsked = useRef(false);
 
   useEffect(() => {
@@ -109,6 +111,18 @@ export default function Result() {
               track('review_open', { wrong: wrong.length });
               router.push({ pathname: '/revisao', params: { ids: wrong.join(',') } });
             }}
+          />
+        )}
+        {canUnlockFullReview && (
+          <Button
+            label="Ver todas as questões com explicação (vídeo)"
+            kind="outline"
+            onPress={() =>
+              showRewarded(() => {
+                track('full_review_unlock', { total: all.length });
+                router.push({ pathname: '/revisao', params: { ids: all.join(',') } });
+              })
+            }
           />
         )}
         <Button

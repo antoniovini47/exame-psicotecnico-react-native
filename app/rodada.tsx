@@ -52,6 +52,7 @@ export default function RoundScreen() {
         total: summary.total,
         detail: `${summary.correct} de ${summary.total} certas`,
         wrongIds: summary.wrongIds,
+        questionIds: summary.questionIds,
       },
       { ...params, startedAt: params.startedAt ?? String(round.startedAt) },
       true,
