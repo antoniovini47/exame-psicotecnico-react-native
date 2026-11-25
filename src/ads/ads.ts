@@ -40,8 +40,11 @@ export function isRewardedReady(): boolean {
   return rewarded.loaded;
 }
 
+let rewardedShowing = false;
+
 export function showRewarded(onEarned: () => void = grantAdFree): void {
-  if (!rewarded.loaded) return;
+  if (!rewarded.loaded || rewardedShowing) return;
+  rewardedShowing = true;
   let earned = false;
   const offEarned = rewarded.addAdEventListener(RewardedAdEventType.EARNED_REWARD, () => {
     earned = true;
@@ -49,6 +52,7 @@ export function showRewarded(onEarned: () => void = grantAdFree): void {
   const offClosed = rewarded.addAdEventListener(AdEventType.CLOSED, () => {
     offEarned();
     offClosed();
+    rewardedShowing = false;
     if (earned) onEarned();
   });
   rewarded.show();
