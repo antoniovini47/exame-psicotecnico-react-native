@@ -6,11 +6,11 @@ describe('canShowInterstitial', () => {
     expect(canShowInterstitial(null, null, 0)).toBe(true);
   });
 
-  it('given an ad shown less than 3 minutes ago, when checking, then blocks it', () => {
+  it('given an ad shown less than 2 minutes ago, when checking, then blocks it', () => {
     expect(canShowInterstitial(0, null, INTERSTITIAL_MIN_GAP_MS - 1)).toBe(false);
   });
 
-  it('given an ad shown 3 minutes ago, when checking, then allows it', () => {
+  it('given an ad shown 2 minutes ago, when checking, then allows it', () => {
     expect(canShowInterstitial(0, null, INTERSTITIAL_MIN_GAP_MS)).toBe(true);
   });
 
