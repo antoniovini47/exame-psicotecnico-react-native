@@ -107,7 +107,7 @@ export default function ProgressScreen() {
           ) : (
             <>
               <Text muted>Assista a um vídeo curto e treine sem interrupção por um dia inteiro.</Text>
-              <Button label="Assistir vídeo" kind="outline" disabled={!isRewardedReady()} onPress={showRewarded} />
+              <Button label="Assistir vídeo" kind="outline" disabled={!isRewardedReady()} onPress={() => showRewarded()} />
             </>
           )}
         </Card>

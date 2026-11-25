@@ -19,7 +19,6 @@ export function initAds(): void {
     .then(() => {
       interstitial.addAdEventListener(AdEventType.CLOSED, () => interstitial.load());
       interstitial.addAdEventListener(AdEventType.ERROR, () => setTimeout(() => interstitial.load(), 60_000));
-      rewarded.addAdEventListener(RewardedAdEventType.EARNED_REWARD, () => writeJson(keys.adFreeUntil, adFreeUntilAfterReward(Date.now())));
       rewarded.addAdEventListener(AdEventType.CLOSED, () => rewarded.load());
       interstitial.load();
       rewarded.load();
@@ -41,6 +40,20 @@ export function isRewardedReady(): boolean {
   return rewarded.loaded;
 }
 
-export function showRewarded(): void {
-  if (rewarded.loaded) rewarded.show();
+export function showRewarded(onEarned: () => void = grantAdFree): void {
+  if (!rewarded.loaded) return;
+  let earned = false;
+  const offEarned = rewarded.addAdEventListener(RewardedAdEventType.EARNED_REWARD, () => {
+    earned = true;
+  });
+  const offClosed = rewarded.addAdEventListener(AdEventType.CLOSED, () => {
+    offEarned();
+    offClosed();
+    if (earned) onEarned();
+  });
+  rewarded.show();
+}
+
+function grantAdFree(): void {
+  writeJson(keys.adFreeUntil, adFreeUntilAfterReward(Date.now()));
 }

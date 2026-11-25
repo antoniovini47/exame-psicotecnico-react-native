@@ -33,8 +33,8 @@ describe('answering', () => {
 });
 
 describe('summarize', () => {
-  it('given mixed answers, when summarizing, then counts correct ones and lists the wrong ids', () => {
+  it('given mixed answers, when summarizing, then counts correct ones and lists the wrong and all ids', () => {
     const round = { seed: 1, questionIds: [1, 2, 3], answers: [0, 0, 0], startedAt: 1000 };
-    expect(summarize(round, bank, 61000)).toEqual({ total: 3, correct: 2, wrongIds: [2], durationMs: 60000 });
+    expect(summarize(round, bank, 61000)).toEqual({ total: 3, correct: 2, wrongIds: [2], questionIds: [1, 2, 3], durationMs: 60000 });
   });
 });

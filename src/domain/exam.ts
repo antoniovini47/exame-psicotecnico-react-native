@@ -6,12 +6,15 @@ export interface StepResult {
   total: number;
   detail: string;
   wrongIds?: number[];
+  questionIds?: number[];
 }
 
 export const FULL_EXAM: readonly Skill[] = ['focused', 'divided', 'memory', 'reasoning'];
 
 const isSkill = (value: unknown): value is Skill => typeof value === 'string' && value in SKILL_LABELS;
 const isCount = (value: unknown): value is number => Number.isInteger(value) && (value as number) >= 0;
+
+const isCountList = (value: unknown): boolean => value === undefined || (Array.isArray(value) && value.every(isCount));
 
 function isStepResult(value: unknown): value is StepResult {
   if (typeof value !== 'object' || value === null) return false;
@@ -21,7 +24,8 @@ function isStepResult(value: unknown): value is StepResult {
     isCount(step.correct) &&
     isCount(step.total) &&
     typeof step.detail === 'string' &&
-    (step.wrongIds === undefined || (Array.isArray(step.wrongIds) && step.wrongIds.every(isCount)))
+    isCountList(step.wrongIds) &&
+    isCountList(step.questionIds)
   );
 }
 
