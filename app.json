@@ -28,7 +28,7 @@
       ]
     },
     "plugins": [
-      "./plugins/withAppLovinAdapter",
+      "./plugins/withLiftoffAdapter",
       [
         "react-native-google-mobile-ads",
         {
