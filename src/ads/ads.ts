@@ -49,13 +49,18 @@ export function showRewarded(onEarned: () => void = grantAdFree): void {
   const offEarned = rewarded.addAdEventListener(RewardedAdEventType.EARNED_REWARD, () => {
     earned = true;
   });
-  const offClosed = rewarded.addAdEventListener(AdEventType.CLOSED, () => {
+  const release = () => {
     offEarned();
     offClosed();
+    offError();
     rewardedShowing = false;
+  };
+  const offClosed = rewarded.addAdEventListener(AdEventType.CLOSED, () => {
+    release();
     if (earned) onEarned();
   });
-  rewarded.show();
+  const offError = rewarded.addAdEventListener(AdEventType.ERROR, release);
+  rewarded.show().catch(release);
 }
 
 function grantAdFree(): void {
